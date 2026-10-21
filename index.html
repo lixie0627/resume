@@ -1,0 +1,3651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>李勰 - 个人简历</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --bg: #f8f7fb;
+      --bg-card: rgba(255, 255, 255, 0.7);
+      --bg-solid: #ffffff;
+      --glass-border: rgba(255, 255, 255, 0.8);
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #9ca3af;
+      --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 10px 30px rgba(0,0,0,0.05);
+      --shadow-lg: 0 4px 6px rgba(0,0,0,0.03), 0 20px 40px rgba(0,0,0,0.08);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --radius-pill: 9999px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text-primary);
+      background: var(--bg);
+    }
+
+    /* 顶部导航 */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 80px;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px);
+      padding: 6px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .nav-item {
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .nav-item:hover { color: var(--primary); }
+
+    .nav-item.active {
+      background: var(--text-primary);
+      color: white;
+      font-weight: 600;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    /* 主内容区 */
+    .main-container {
+      height: 100vh;
+      padding-top: 72px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section {
+      position: absolute;
+      top: 72px;
+      left: 80px;
+      right: 80px;
+      bottom: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-right: 8px;
+    }
+
+    .section.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .section::-webkit-scrollbar { width: 6px; }
+    .section::-webkit-scrollbar-track { background: transparent; }
+    .section::-webkit-scrollbar-thumb { background: rgba(37, 99, 235, 0.15); border-radius: 3px; }
+
+    /* 玻璃卡片 */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.8);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 32px;
+      transition: var(--transition);
+    }
+
+    .glass-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    /* ===== 关于我页面（参考图风格） ===== */
+    .about-layout {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-height: 100%;
+      justify-content: flex-start;
+      padding: 40px 0 0;
+    }
+
+    .about-hero {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-greeting {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
+
+    .about-role {
+      font-size: 1.75rem;
+      font-weight: 600;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    .about-desc {
+      font-size: clamp(0.85rem, 1.2vw, 1rem);
+      color: var(--text-secondary);
+      line-height: 24px;
+      max-width: 560px;
+      text-align: justify;
+      text-justify: inter-ideograph;
+    }
+
+    .about-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0px;
+      letter-spacing: 0.5px;
+    }
+
+    .about-actions {
+      display: flex;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .btn-pill {
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--text-primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      background: transparent;
+      color: var(--text-primary);
+    }
+
+    .btn-pill:hover {
+      background: var(--text-primary);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .btn-pill-primary {
+      background: #dbeafe;
+      border-color: #dbeafe;
+      color: var(--text-primary);
+    }
+
+    .btn-pill-primary:hover {
+      background: #bfdbfe;
+      border-color: #bfdbfe;
+      color: var(--text-primary);
+    }
+
+    .about-photo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .photo-frame {
+      width: 380px;
+      height: 475px;
+      border-radius: 190px 190px 24px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 190px 190px 24px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .photo-outline {
+      position: absolute;
+      inset: -6px;
+      border-radius: 196px 196px 30px 30px;
+      border: 3px solid var(--primary-light);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .about-right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: none;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 8px 12px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+
+    .stat-num {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .stat-name {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 6px;
+    }
+
+    .stat-sub {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .about-matcher {
+      border-radius: 20px;
+      background: rgba(37, 99, 235, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(37, 99, 235, 0.08);
+      padding: 24px 28px;
+    }
+
+    .about-matcher-head {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .about-matcher-head .matcher-label { margin-bottom: 0; }
+
+    .about-matcher-tip {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .matcher-examples {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .matcher-examples-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .matcher-pill {
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(37, 99, 235, 0.06);
+      color: var(--primary);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .matcher-pill:hover {
+      background: rgba(37, 99, 235, 0.12);
+      border-color: rgba(37, 99, 235, 0.2);
+    }
+
+    .matcher-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .matcher-box {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .matcher-input {
+      flex: 1;
+      max-width: none;
+      padding: 12px 18px;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.8);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .matcher-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+    }
+
+    .matcher-input::placeholder { color: var(--text-muted); }
+
+    .btn-match {
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: var(--text-primary);
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(17, 24, 39, 0.15);
+    }
+
+    .btn-match:hover {
+      background: rgba(31, 41, 55, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transform: scale(1.03);
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 24px rgba(17, 24, 39, 0.18);
+    }
+
+    .btn-match:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .btn-match.loading {
+      pointer-events: none;
+      animation: pulse-glow 1.4s infinite;
+    }
+
+    .btn-match.success {
+      background: #10b981;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+    }
+
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(17, 24, 39, 0.35); }
+      70% { box-shadow: 0 0 0 12px rgba(17, 24, 39, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(17, 24, 39, 0); }
+    }
+
+    .btn-match .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transform: scale(0);
+      animation: ripple-anim 0.55s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple-anim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    /* 优势页面 - 雷达图 + 三栏 */
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: 35fr 30fr 35fr;
+      align-items: start;
+      gap: 36px;
+      min-height: 100%;
+      padding: 20px 1px;
+    }
+
+    #section-advantages {
+      left: 60px;
+      right: 60px;
+    }
+
+    .advantage-col {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      min-width: 0;
+    }
+
+    .advantage-col-left,
+    .advantage-col-right {
+      align-self: center;
+    }
+
+    .radar-container {
+      position: relative;
+      width: 340px;
+      height: 340px;
+      margin: 0 auto;
+      align-self: center;
+      background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.06), rgba(37, 99, 235, 0) 72%);
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .radar-canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .radar-center-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .radar-center-label .radar-center-score {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .radar-center-label .radar-center-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .advantage-card {
+      text-align: left;
+      padding: 22px 26px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .advantage-card:hover,
+    .advantage-card.active {
+      border-color: rgba(37, 99, 235, 0.35);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+    }
+
+    .advantage-card.active {
+      background: rgba(37, 99, 235, 0.03);
+    }
+
+    .adv-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .adv-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .adv-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .adv-score-bar {
+      width: 50px;
+      height: 5px;
+      background: #e5e7eb;
+      border-radius: 3px;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .adv-score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      border-radius: 3px;
+      transition: width 1s ease-out;
+    }
+
+    .adv-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    .adv-stats {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-top: 16px;
+      overflow: hidden;
+    }
+
+    .adv-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(37, 99, 235, 0.06);
+      border-radius: 20px;
+      padding: 4px 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .adv-stat b {
+      color: #2563eb;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 0;
+    }
+
+    /* 工作经历 */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: -28px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), rgba(37, 99, 235, 0.1));
+    }
+
+    .timeline-item:last-child::before { display: none; }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .timeline-title { font-size: 1.1rem; font-weight: 700; }
+
+    .timeline-period {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      background: rgba(37, 99, 235, 0.08);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .timeline-role {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    .timeline-item:first-child .timeline-dot { background: var(--primary); }
+
+    .timeline-summary {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .duty-cards {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .duty-card {
+      flex: 1;
+      min-width: 150px;
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: all 0.2s;
+    }
+
+    .duty-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .duty-card.d-blue { background: rgba(37, 99, 235, 0.08); }
+    .duty-card.d-green { background: rgba(34, 197, 94, 0.08); }
+    .duty-card.d-orange { background: rgba(245, 158, 11, 0.08); }
+    .duty-card.d-purple { background: rgba(168, 85, 247, 0.08); }
+
+    .duty-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .duty-desc {
+      font-size: 11px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .related-projects { margin-top: 14px; }
+
+    .related-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .related-list {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .rel-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 10px;
+      padding: 12px;
+      transition: all 0.2s;
+    }
+
+    .rel-card.clickable { cursor: pointer; }
+
+    .rel-card.clickable:hover {
+      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .rel-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .rel-card.clickable .rel-name i {
+      font-size: 10px;
+      color: var(--primary);
+      margin-left: 4px;
+    }
+
+    .rel-tag {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ===== 项目作品 - 两栏交替布局 ===== */
+    .projects-container {
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .project-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project-row:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+    }
+
+    .project-row.reverse { flex-direction: row-reverse; }
+
+    .project-screenshot {
+      flex: 1;
+      min-width: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: #f0f0f0;
+    }
+
+    .project-screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      display: block;
+    }
+
+    .project-row:hover .project-screenshot img { transform: scale(1.02); }
+
+    .project-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .project-color-bar {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 4px;
+      border-radius: 2px;
+    }
+
+    .project-name {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .project-tags .tag {
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .project-tech {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .projects-container .project-date {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ===== 项目详情模态框 ===== */
+    .modal.detail-modal {
+      max-width: none;
+      width: 90vw;
+      height: 85vh;
+      padding: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 65% 35%;
+    }
+
+    .dm-left {
+      padding: 24px;
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .dm-main {
+      flex: 1;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #f0f0f0;
+      margin-bottom: 12px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 0;
+    }
+
+    .dm-main img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: opacity 0.25s ease;
+      display: block;
+    }
+
+    .dm-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.75);
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+      opacity: 0.6;
+      z-index: 2;
+    }
+
+    .dm-arrow:hover { opacity: 1; background: #fff; }
+    .dm-prev { left: 12px; }
+    .dm-next { right: 12px; }
+
+    .dm-thumbs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0 2px;
+      scrollbar-width: thin;
+      flex-shrink: 0;
+    }
+
+    .dm-thumbs::-webkit-scrollbar { height: 4px; }
+    .dm-thumbs::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 2px; }
+
+    .dm-thumbs img {
+      width: 60px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      background: #f0f0f0;
+    }
+
+    .dm-thumbs img:hover { transform: translateY(-2px); }
+    .dm-thumbs img.active { border-color: var(--primary); }
+
+    .dm-right {
+      padding: 28px 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      overflow-y: auto;
+      min-width: 0;
+    }
+
+    .dm-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-primary);
+      padding-right: 32px;
+    }
+
+    .dm-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .dm-footer {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* 详情右栏文字样式（复用自旧分屏右栏） */
+    .project-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: rgba(37, 99, 235, 0.08);
+      padding: 5px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .project-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .project-desc-text {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .project-work-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .project-work-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .project-work-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .project-work-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary-light);
+    }
+
+    .project-result {
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(96, 165, 250, 0.04));
+      border-left: 3px solid var(--primary);
+      padding: 12px 14px;
+      border-radius: 8px;
+    }
+
+    .project-result strong { color: var(--primary); font-weight: 700; }
+
+    .btn-demo {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      background: rgba(37, 99, 235, 0.06);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+    }
+
+    .btn-demo:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .demo-local-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 切换淡入动画 */
+    .fade-swap { animation: fadeSwap 0.3s ease; }
+
+    @keyframes fadeSwap {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 移动端 */
+    @media (max-width: 1023px) {
+      .projects-container { padding: 32px 24px; gap: 28px; }
+      .project-row { gap: 24px; padding: 20px; }
+    }
+
+    @media (max-width: 768px) {
+      .project-row,
+      .project-row.reverse {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
+      .project-screenshot { aspect-ratio: 16 / 9; width: 100%; }
+      .project-info { padding-left: 14px; }
+      .modal.detail-modal {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+        width: 94vw;
+        height: 88vh;
+      }
+      .dm-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        padding: 16px;
+        height: 50vh;
+      }
+      .dm-right { padding: 16px 20px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .projects-container { padding: 24px 16px; gap: 20px; }
+      .project-row { padding: 16px; }
+      .project-name { font-size: 17px; }
+    }
+
+    /* 弹窗 */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, 0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg-solid);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      max-width: 720px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 32px;
+      transform: scale(0.96);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+
+    .modal-overlay.show .modal { transform: scale(1); }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.05);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .modal-close:hover {
+      background: rgba(0,0,0,0.1);
+      color: var(--text-primary);
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      padding-right: 40px;
+    }
+
+    /* 联系下拉 */
+    .contact-dropdown-wrap {
+      position: relative;
+    }
+
+    .contact-dropdown {
+      position: absolute;
+      top: 50%;
+      left: calc(100% + 12px);
+      transform: translateY(-50%) translateX(-6px);
+      min-width: 260px;
+      background: var(--bg-solid);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(0,0,0,0.05);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease;
+      z-index: 100;
+    }
+
+    .contact-dropdown.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .contact-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      transition: background 0.2s ease;
+    }
+
+    .contact-dropdown-item:hover {
+      background: #f9fafb;
+    }
+
+    .contact-dropdown-item i {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #dbeafe;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-dropdown-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .contact-dropdown-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    /* ===== 项目弹窗图片展示 ===== */
+    .project-modal { max-width: 800px; }
+
+    .project-demo-wrap {
+      display: none;
+      margin: 0 0 20px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #f3f4f6;
+      position: relative;
+    }
+
+    .modal.has-demo .project-demo-wrap {
+      display: block;
+    }
+
+    .project-demo-frame {
+      width: 100%;
+      height: 360px;
+      display: block;
+      border: none;
+      background: #fff;
+    }
+
+    @media (max-width: 768px) {
+      .project-demo-frame { height: 220px; }
+      .project-demo-note { padding: 32px 16px; font-size: 0.82rem; }
+    }
+
+    .project-demo-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 56px 24px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-align: center;
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    }
+
+    .project-demo-note i {
+      font-size: 1.6rem;
+      color: var(--primary);
+    }
+
+    .project-demo-note code {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: 'SF Mono', Menlo, monospace;
+      font-size: 0.85rem;
+    }
+
+    /* 项目 Demo 弹窗（全屏） */
+    #projectModal { padding: 0; }
+
+    .modal.project-modal {
+      max-width: none;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      padding-bottom: 0;
+    }
+
+    .modal.has-demo .project-demo-wrap {
+      flex: 1;
+      min-height: 0;
+    }
+
+    .modal.has-demo .project-demo-frame { height: 100%; }
+
+    .modal.has-demo .project-demo-note { height: 100%; }
+
+    /* 学习与探索 - 紧凑能力卡片网格 + 学习沉淀 */
+    .cap-grid-wrap {
+      min-height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 24px 0;
+    }
+
+    .learning-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 20px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .capability-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .cap-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
+    }
+
+    .cap-card:hover {
+      border-color: rgba(37, 99, 235, 0.15);
+      box-shadow: 0 2px 12px rgba(37, 99, 235, 0.06);
+    }
+
+    .cap-card.full-width { grid-column: 1 / -1; }
+
+    .cap-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .cap-header .cap-icon { font-size: 20px; }
+
+    .cap-header .cap-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .cap-desc {
+      font-size: 15px;
+      color: #6b7280;
+      margin-bottom: 10px;
+    }
+
+    .cap-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .cap-skills .skill-tag {
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(37, 99, 235, 0.06);
+      color: #2563eb;
+      white-space: nowrap;
+    }
+
+    .cap-projects {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cap-project-item {
+      font-size: 15px;
+      color: #4b5563;
+      line-height: 1.4;
+    }
+
+    .cap-project-item .proj-name {
+      font-weight: 600;
+      color: #1a1a2e;
+    }
+
+    .cap-project-item .check {
+      color: #2563eb;
+      margin-right: 4px;
+    }
+
+    /* 学习沉淀卡片（右栏） */
+    .learning-side {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .learning-card {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 12px;
+      border-left: 3px solid #2563eb;
+      transition: all 0.2s;
+    }
+
+    .learning-card:nth-child(2) { border-left-color: #22c55e; }
+    .learning-card:nth-child(3) { border-left-color: #f59e0b; }
+    .learning-card:nth-child(4) { border-left-color: #a855f7; }
+
+    .learning-card:last-child { margin-bottom: 0; }
+
+    .learning-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .learning-card .learn-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+    }
+
+    .learning-card .learn-content {
+      font-size: 15px;
+      color: #4b5563;
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .learning-card .learn-tags {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+
+    .learning-card .learn-tags span {
+      font-size: 14px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(37, 99, 235, 0.06);
+      color: #2563eb;
+    }
+
+    /* 移动端 */
+    @media (max-width: 768px) {
+      .learning-layout { grid-template-columns: 1fr; }
+      .capability-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .cap-card { padding: 16px; }
+      .learning-card { width: 100%; }
+    }
+
+
+
+    .project-image-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .project-image-grid img {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .project-image-full {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin: 20px 0;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .project-image-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 6px;
+      margin-bottom: 16px;
+    }
+
+    /* ===== 匹配结果弹窗（参考图风格） ===== */
+    .match-modal {
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      overflow-y: hidden !important;
+    }
+
+    .match-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+
+    .match-modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .match-badge {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--primary);
+      background: #dbeafe;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .match-body {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+      flex: 1;
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .match-left {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .score-circle-wrap {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto;
+    }
+
+    .score-circle-wrap canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .score-circle-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-circle-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .score-circle-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .score-circle-total {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .match-matrix-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .match-matrix {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .matrix-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .matrix-name {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      width: 60px;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .matrix-bar-wrap {
+      flex: 1;
+      height: 8px;
+      background: #f3f4f6;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .matrix-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #60a5fa, #2563eb);
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+
+    .matrix-score {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      width: 28px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .match-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    .match-right::after {
+      content: '';
+      display: block;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .match-highlight-card,
+    .match-summary-card {
+      background: #f9fafb;
+      border-radius: var(--radius-sm);
+      padding: 18px;
+      border: 1px solid rgba(0,0,0,0.04);
+    }
+
+    .match-highlight-card h4,
+    .match-summary-card h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .match-highlight-card h4 i { color: #f59e0b; }
+    .match-summary-card h4 i { color: var(--primary); }
+
+    .match-highlight-card p,
+    .match-summary-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .match-highlight-card p {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .match-highlight-card p:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .match-summary-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .match-highlight-card p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0;
+      padding-top: 20px;
+      flex-shrink: 0;
+    }
+
+    .btn-close-modal {
+      padding: 10px 24px;
+      border-radius: var(--radius-pill);
+      border: none;
+      background: var(--text-primary);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .btn-close-modal:hover {
+      background: #374151;
+      transform: translateY(-1px);
+    }
+
+    /* 项目详情弹窗 */
+    .project-detail-section { margin-bottom: 16px; }
+    .project-detail-section:last-child { margin-bottom: 0; }
+
+    .project-detail-section h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .project-detail-section p,
+    .project-detail-section li {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .project-detail-section ul {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .project-detail-section li {
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .project-detail-section li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--primary-light);
+    }
+
+    /* 加载状态 */
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .loading-spinner-dark {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(0,0,0,0.15);
+      border-top-color: var(--text-primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* 响应式 */
+    @media (max-width: 1024px) {
+      .about-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        align-content: start;
+        align-items: start;
+      }
+      .about-right {
+        order: -1;
+        align-items: flex-start;
+      }
+      .about-stats { max-width: none; grid-template-columns: repeat(2, 1fr); }
+      .about-photo {
+        justify-content: flex-start;
+      }
+      .photo-frame {
+        width: 200px;
+        height: 260px;
+      }
+      .advantages-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 20px 18px;
+        overflow-y: auto;
+      }
+      .radar-container {
+        width: 300px;
+        height: 300px;
+        order: -1;
+      }
+      .advantage-col {
+        display: contents;
+      }
+      .advantage-card { padding: 20px 24px; }
+      .match-body {
+        grid-template-columns: 1fr;
+      }
+      .match-left {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar { padding: 0 40px; }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 40px;
+        right: 40px;
+        background: white;
+        flex-direction: column;
+        padding: 8px;
+        gap: 4px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(0,0,0,0.05);
+      }
+      .nav-menu.show { display: flex; }
+      .mobile-menu-btn { display: block; }
+      .section { left: 40px; right: 40px; bottom: 20px; }
+      .about-greeting { font-size: 2.5rem; }
+      .about-role { font-size: 1.35rem; }
+      .about-desc { font-size: 0.9rem; line-height: 24px; text-align: justify; text-justify: inter-ideograph; }
+      .about-meta { font-size: 0.75rem; }
+      .timeline-header { flex-direction: column; }
+      .matcher-box { flex-direction: column; align-items: stretch; }
+      .matcher-input { max-width: none; }
+      .match-left { flex-direction: column; }
+    }
+
+    @media (max-width: 640px) {
+      .glass-card { padding: 20px; }
+      .about-actions { flex-direction: column; }
+      .btn-pill { width: 100%; }
+      .btn-match { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <ul class="nav-menu" id="navMenu">
+        <li class="nav-item active" data-section="about">关于我</li>
+        <li class="nav-item" data-section="advantages">个人优势</li>
+        <li class="nav-item" data-section="experience">工作经历</li>
+        <li class="nav-item" data-section="projects">项目作品</li>
+        <li class="nav-item" data-section="showcase">学习与探索</li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- 主内容 -->
+  <div class="main-container">
+
+    <!-- 关于我 -->
+    <section class="section active" id="section-about">
+      <div class="about-layout">
+        <div class="about-hero">
+          <div class="about-text">
+            <div>
+              <div class="about-greeting">Hi，我是李勰</div>
+              <div class="about-role">AI Product Manager</div>
+            </div>
+            <div class="about-desc">
+              技术+AI产品复合背景，5年产品+7年前端经验，持有PMP/NPDP/心理学认证。理解LLM/Agent/RAG原理，深度实践VibeCoding。主导AI合同审查平台、多模态估价系统、AI备课助手、电商营销SaaS等多个0-1 AI产品落地，兼具代码能力与产品思维。
+            </div>
+            <div class="about-meta">中国地质大学 · 计算机科学与技术</div>
+            <div class="about-stats">
+              <div class="stat-card">
+                <div class="stat-num">5年</div>
+                <div class="stat-name">产品经验</div>
+                <div class="stat-sub">B/C端产品全链路</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">7年</div>
+                <div class="stat-name">前端开发</div>
+                <div class="stat-sub">React/Vue/多端</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">4项</div>
+                <div class="stat-name">专业认证</div>
+                <div class="stat-sub">PMP·NPDP等</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">5个</div>
+                <div class="stat-name">AI项目落地</div>
+                <div class="stat-sub">0到1独立交付</div>
+              </div>
+            </div>
+            <div class="about-actions">
+              <button class="btn-pill" id="downloadBtn" style="width: 148px; padding: 12px 0;">
+                <i class="fas fa-download"></i> 下载简历
+              </button>
+              <div class="contact-dropdown-wrap">
+                <button class="btn-pill btn-pill-primary" id="contactBtn" style="width: 148px; padding: 12px 0;">
+                  <i class="fas fa-envelope"></i> 联系我
+                </button>
+                <div class="contact-dropdown" id="contactDropdown">
+                  <div class="contact-dropdown-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                      <div class="contact-dropdown-label">邮箱</div>
+                      <div class="contact-dropdown-value">502288295@qq.com</div>
+                    </div>
+                  </div>
+                  <div class="contact-dropdown-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                      <div class="contact-dropdown-label">电话</div>
+                      <div class="contact-dropdown-value">18612707061</div>
+                    </div>
+                  </div>
+                  <div class="contact-dropdown-item">
+                    <i class="fas fa-location-dot"></i>
+                    <div>
+                      <div class="contact-dropdown-label">地点</div>
+                      <div class="contact-dropdown-value">北京</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="about-right">
+            <div class="about-photo">
+              <div class="photo-frame">
+                <img src="images/photo.jpg" alt="李勰">
+                <div class="photo-outline"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-matcher">
+          <div class="about-matcher-head">
+            <div class="matcher-label"><i class="fas fa-wand-magic-sparkles" style="color: var(--primary);"></i> AI 岗位匹配器</div>
+            <div class="about-matcher-tip">粘贴JD，查看与岗位的匹配度</div>
+          </div>
+          <div class="matcher-box">
+            <input type="text" class="matcher-input" id="matcherInput" placeholder="粘贴您的JD，查看与岗位之间的匹配度">
+            <button class="btn-match" id="matchBtn">
+              <span id="matchBtnText">开始匹配 <i class="fas fa-arrow-right"></i></span>
+            </button>
+          </div>
+          <div class="matcher-examples">
+            <span class="matcher-examples-label">示例：</span>
+            <span class="matcher-pill" data-jd="AI产品经理：负责AI产品规划与落地，熟悉LLM/Agent/RAG技术原理，具备B/C端产品经验，有0到1项目落地经验者优先。">AI产品经理</span>
+            <span class="matcher-pill" data-jd="FDE/AI落地工程师：深入客户业务场景交付AI解决方案，要求技术理解力强，熟悉大模型应用与Prompt工程，具备全栈开发能力。">FDE/AI落地工程师</span>
+            <span class="matcher-pill" data-jd="AI前端工程师：负责AI产品前端架构与开发，熟悉React/Vue/TypeScript，有AI辅助开发（VibeCoding）经验者优先。">AI前端工程师</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 个人优势 -->
+    <section class="section" id="section-advantages">
+      <div class="advantages-grid">
+        <div class="advantage-col advantage-col-left">
+          <div class="advantage-card" data-adv="0">
+            <div class="adv-icon"><i class="fas fa-user-tie"></i></div>
+            <div class="adv-content">
+              <div class="adv-title">复合型AI产品专家 <span class="adv-score-bar"><span class="adv-score-fill" style="width: 0%" data-target="95"></span></span></div>
+              <div class="adv-desc">5年产品+7年前端复合背景，具备需求→架构→工程落地的全链路闭环能力。兼具技术理解力与产品商业思维，覆盖AI产品/FDE/前端三个求职方向。</div>
+              <div class="adv-stats">
+                <span class="adv-stat"><b>10年+</b>复合经验</span>
+                <span class="adv-stat"><b>5个</b>0-1项目</span>
+                <span class="adv-stat"><b>3个</b>方向覆盖</span>
+              </div>
+            </div>
+          </div>
+          <div class="advantage-card" data-adv="1">
+            <div class="adv-icon"><i class="fas fa-layer-group"></i></div>
+            <div class="adv-content">
+              <div class="adv-title">架构设计与平台化 <span class="adv-score-bar"><span class="adv-score-fill" style="width: 0%" data-target="90"></span></span></div>
+              <div class="adv-desc">主导ContractHub"通用引擎+可插拔行业包"架构，一套平台覆盖法律/金融/HR多行业。AMS组件库从0到1搭建，30+通用组件统一多业务线UI标准。</div>
+              <div class="adv-stats">
+                <span class="adv-stat"><b>1套</b>平台多行业</span>
+                <span class="adv-stat"><b>30+</b>组件库</span>
+                <span class="adv-stat"><b>35%</b>效率提升</span>
+              </div>
+            </div>
+          </div>
+          <div class="advantage-card" data-adv="2">
+            <div class="adv-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="adv-content">
+              <div class="adv-title">数据分析与驱动 <span class="adv-score-bar"><span class="adv-score-fill" style="width: 0%" data-target="88"></span></span></div>
+              <div class="adv-desc">主导多模态AI估价系统，覆盖1000+业务场景、数万次在线调用。建立数据标注与模型评估体系，核心场景误差率较人工估价下降5.2%。</div>
+              <div class="adv-stats">
+                <span class="adv-stat"><b>1000+</b>场景</span>
+                <span class="adv-stat"><b>数万次</b>调用</span>
+                <span class="adv-stat"><b>5.2%</b>误差率优化</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="radar-container">
+          <canvas class="radar-canvas" id="radarCanvas" width="420" height="420"></canvas>
+          <div class="radar-center-label">
+            <div class="radar-center-score">90</div>
+            <div class="radar-center-text">综合评分</div>
+          </div>
+        </div>
+        <div class="advantage-col advantage-col-right">
+          <div class="advantage-card" data-adv="3">
+            <div class="adv-icon"><i class="fas fa-rocket"></i></div>
+            <div class="adv-content">
+              <div class="adv-title">技术栈与高效交付 <span class="adv-score-bar"><span class="adv-score-fill" style="width: 0%" data-target="92"></span></span></div>
+              <div class="adv-desc">VibeCoding深度实践者，Cursor+Claude Code全栈交付，1周6页Demo。前端（React/Vue/Next.js/TS）+ AI（Agent/RAG/MCP）双栈支撑高效落地。</div>
+              <div class="adv-stats">
+                <span class="adv-stat"><b>VibeCoding</b>全栈交付</span>
+                <span class="adv-stat"><b>Agent/RAG/MCP</b></span>
+              </div>
+            </div>
+          </div>
+          <div class="advantage-card" data-adv="4">
+            <div class="adv-icon"><i class="fas fa-certificate"></i></div>
+            <div class="adv-content">
+              <div class="adv-title">专业认证 <span class="adv-score-bar"><span class="adv-score-fill" style="width: 0%" data-target="85"></span></span></div>
+              <div class="adv-desc">持有PMP、NPDP、大模型应用开发工程师及心理学认证。系统化方法论支撑复杂AI产品的规划与交付。</div>
+              <div class="adv-stats">
+                <span class="adv-stat"><b>PMP</b></span>
+                <span class="adv-stat"><b>NPDP</b></span>
+                <span class="adv-stat"><b>大模型工程师</b></span>
+                <span class="adv-stat"><b>心理学认证</b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 工作经历 -->
+    <section class="section" id="section-experience">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div class="timeline-title">AI产品全链路实践</div>
+              <div class="timeline-period">2026.03 - 至今</div>
+            </div>
+            <div class="timeline-role">独立学习与实践</div>
+            <div class="timeline-summary">系统学习并落地AI核心技术体系，独立主导多个垂直场景Agent产品从0到1</div>
+            <div class="duty-cards">
+              <div class="duty-card d-blue">
+                <div class="duty-title">AI系统搭建</div>
+                <div class="duty-desc">从0构建Agent系统矩阵，覆盖Agent编排/RAG/VibeCoding三大方向</div>
+              </div>
+              <div class="duty-card d-green">
+                <div class="duty-title">平台化实践</div>
+                <div class="duty-desc">深入实践Coze/Dify搭建Agent，总结产品架构设计方法论</div>
+              </div>
+              <div class="duty-card d-orange">
+                <div class="duty-title">快速验证</div>
+                <div class="duty-desc">VibeCoding模式完成多个MVP，验证周期从月级缩短至周级</div>
+              </div>
+              <div class="duty-card d-purple">
+                <div class="duty-title">方法论沉淀</div>
+                <div class="duty-desc">输出可复用的Agent系统搭建标准与Prompt工程规范</div>
+              </div>
+            </div>
+            <div class="related-projects">
+              <div class="related-title">关联项目</div>
+              <div class="related-list">
+                <div class="rel-card clickable" data-project="contracthub">
+                  <div class="rel-name">ContractHub · AI合同审查<i class="fas fa-arrow-right"></i></div>
+                  <div class="rel-tag">四维风险扫描 · 6页Demo · 1周交付</div>
+                </div>
+                <div class="rel-card clickable" data-project="zhike">
+                  <div class="rel-name">智课 · AI备课助手<i class="fas fa-arrow-right"></i></div>
+                  <div class="rel-tag">学情追问引擎 · 5大功能模块</div>
+                </div>
+                <div class="rel-card clickable" data-project="travelmap">
+                  <div class="rel-name">AI旅行助手Agent<i class="fas fa-arrow-right"></i></div>
+                  <div class="rel-tag">Agent编排 · 开发效率提升60%</div>
+                </div>
+                <div class="rel-card clickable" data-project="lingxi">
+                  <div class="rel-name">灵析 · AI营销SaaS<i class="fas fa-arrow-right"></i></div>
+                  <div class="rel-tag">8大功能模块 · 双平台GEO</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div class="timeline-title">北京我爱我家房地产经纪有限公司</div>
+              <div class="timeline-period">2018.04 - 至今</div>
+            </div>
+            <div class="timeline-role">产品经理 & 前端工程师</div>
+            <div class="timeline-summary">全端产品负责人，统筹C端用户体验与B端系统建设</div>
+            <div class="duty-cards">
+              <div class="duty-card d-blue">
+                <div class="duty-title">全端产品管理</div>
+                <div class="duty-desc">主导相寓App/小程序/官网全端产品，核心功能渗透率提升25%</div>
+              </div>
+              <div class="duty-card d-green">
+                <div class="duty-title">前端工程化</div>
+                <div class="duty-desc">AMS前端组件库从0到1搭建，30+通用组件，开发效率提升35%</div>
+              </div>
+              <div class="duty-card d-orange">
+                <div class="duty-title">AI产品探索</div>
+                <div class="duty-desc">参与二手房估价平台模型设计，协同算法团队制定多模态数据集标准</div>
+              </div>
+              <div class="duty-card d-purple">
+                <div class="duty-title">业务流程优化</div>
+                <div class="duty-desc">推动无纸化签约上线，经纪人人均作业效率提升40%</div>
+              </div>
+            </div>
+            <div class="related-projects">
+              <div class="related-title">关联项目</div>
+              <div class="related-list">
+                <div class="rel-card clickable" data-project="valuation">
+                  <div class="rel-name">二手房智能估价平台<i class="fas fa-arrow-right"></i></div>
+                  <div class="rel-tag">多模态AI · 1000+小区 · 误差率5.2%</div>
+                </div>
+                <div class="rel-card">
+                  <div class="rel-name">AMS资产管理系统</div>
+                  <div class="rel-tag">30+组件 · 效率35%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content glass-card">
+            <div class="timeline-header">
+              <div class="timeline-title">北京多米音乐</div>
+              <div class="timeline-period">2015.04 - 2018.02</div>
+            </div>
+            <div class="timeline-role">前端开发工程师</div>
+            <div class="timeline-summary">负责Web前端开发与多端适配</div>
+            <div class="duty-cards">
+              <div class="duty-card d-blue">
+                <div class="duty-title">多端前端开发</div>
+                <div class="duty-desc">负责多米音乐、偶扑App及广告活动页Web端实现</div>
+              </div>
+              <div class="duty-card d-green">
+                <div class="duty-title">协作交付</div>
+                <div class="duty-desc">协同后端、测试完成需求评审、迭代开发、测试及上线交付</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 项目作品（两栏交替布局） -->
+    <section class="section" id="section-projects">
+      <div class="projects-container glass-card" id="projectsContainer">
+        <!-- 由 JS 渲染 -->
+      </div>
+    </section>
+
+    <!-- 学习与探索（紧凑能力卡片网格 + 学习沉淀） -->
+    <section class="section" id="section-showcase">
+      <div class="cap-grid-wrap">
+        <div class="learning-layout">
+        <div class="capability-grid">
+          <div class="cap-card">
+            <div class="cap-header">
+              <span class="cap-icon">🧠</span>
+              <span class="cap-name">AI产品 & 大模型应用</span>
+            </div>
+            <div class="cap-desc">大模型应用开发与AI产品设计能力</div>
+            <div class="cap-skills">
+              <span class="skill-tag">Agent工作流</span>
+              <span class="skill-tag">RAG架构</span>
+              <span class="skill-tag">Prompt工程</span>
+              <span class="skill-tag">Embedding</span>
+              <span class="skill-tag">LoRA微调</span>
+              <span class="skill-tag">Claude Code</span>
+              <span class="skill-tag">Coze</span>
+              <span class="skill-tag">Dify</span>
+            </div>
+            <div class="cap-projects">
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">ContractHub</span>：四维风险扫描+AI对话引擎</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">灵析</span>：8大功能模块全链路AI营销闭环</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">智课</span>：学情追问引擎+AIGC教案SaaS</div>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-header">
+              <span class="cap-icon">💻</span>
+              <span class="cap-name">前端工程 & 全栈开发</span>
+            </div>
+            <div class="cap-desc">多端前端开发与全栈交付能力</div>
+            <div class="cap-skills">
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Vue</span>
+              <span class="skill-tag">TypeScript</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">JavaScript(ES6+)</span>
+              <span class="skill-tag">Webpack</span>
+              <span class="skill-tag">Vite</span>
+              <span class="skill-tag">组件化</span>
+              <span class="skill-tag">响应式</span>
+              <span class="skill-tag">性能优化</span>
+            </div>
+            <div class="cap-projects">
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">智课</span>：7个核心页面全栈开发</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">ContractHub</span>：6页面可交互Demo</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">AI旅行助手</span>：地图+行程+心愿清单前端</div>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-header">
+              <span class="cap-icon">⚡</span>
+              <span class="cap-name">AI工具 & VibeCoding</span>
+            </div>
+            <div class="cap-desc">AI辅助编程与快速原型验证能力</div>
+            <div class="cap-skills">
+              <span class="skill-tag">Cursor</span>
+              <span class="skill-tag">Claude Code</span>
+              <span class="skill-tag">VibeCoding</span>
+              <span class="skill-tag">Prompt编写</span>
+              <span class="skill-tag">AI输出验证</span>
+              <span class="skill-tag">需求拆解</span>
+              <span class="skill-tag">MVP快速迭代</span>
+            </div>
+            <div class="cap-projects">
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">ContractHub</span>：1周完成6页面Demo</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">智课</span>：3周全栈交付PRD到Demo</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">AI旅行助手</span>：1周概念到Demo，效率提升60%</div>
+            </div>
+          </div>
+          <div class="cap-card">
+            <div class="cap-header">
+              <span class="cap-icon">📊</span>
+              <span class="cap-name">数据分析 & 可视化</span>
+            </div>
+            <div class="cap-desc">多源数据整合与可视化分析能力</div>
+            <div class="cap-skills">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">SQL</span>
+              <span class="skill-tag">数据可视化</span>
+              <span class="skill-tag">用户行为分析</span>
+              <span class="skill-tag">数据看板</span>
+              <span class="skill-tag">多源数据整合</span>
+            </div>
+            <div class="cap-projects">
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">智能门店诊断</span>：60+门店可视化诊断报告</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">门店标签系统</span>：200+门店5维度标签可配置</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">二手房估价</span>：可视化估价报告因子透明化</div>
+            </div>
+          </div>
+          <div class="cap-card full-width">
+            <div class="cap-header">
+              <span class="cap-icon">🏢</span>
+              <span class="cap-name">B端产品 & SaaS设计</span>
+            </div>
+            <div class="cap-desc">B端SaaS产品规划与平台化设计能力</div>
+            <div class="cap-skills">
+              <span class="skill-tag">产品规划</span>
+              <span class="skill-tag">多角色体系</span>
+              <span class="skill-tag">数据底座</span>
+              <span class="skill-tag">组件规范</span>
+              <span class="skill-tag">流程设计</span>
+              <span class="skill-tag">跨部门协作</span>
+            </div>
+            <div class="cap-projects">
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">灵析</span>：双路径用户体系，覆盖商家全周期</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">门店标签系统</span>：B端SaaS+数据底座</div>
+              <div class="cap-project-item"><span class="check">✓</span><span class="proj-name">AMS组件库</span>：30+通用组件，效率提升35%</div>
+            </div>
+          </div>
+        </div>
+        <div class="learning-side">
+          <div class="learning-card">
+            <div class="learn-title">VibeCoding 方法论</div>
+            <div class="learn-content">需求拆解 → Prompt模板 → AI生成 → 人工验证迭代的完整工作流。已复用于5个AI项目，平均交付周期缩短60%。</div>
+            <div class="learn-tags"><span>VibeCoding</span><span>方法论</span><span>AI辅助开发</span></div>
+          </div>
+          <div class="learning-card">
+            <div class="learn-title">Agent 产品设计实践</div>
+            <div class="learn-content">通用引擎+可插拔行业包的平台化架构思路；多Agent协作流转的标准化流程；AI输出可解释性与闭环优化机制。</div>
+            <div class="learn-tags"><span>Agent</span><span>产品架构</span><span>平台化</span></div>
+          </div>
+          <div class="learning-card">
+            <div class="learn-title">电商AI营销实战</div>
+            <div class="learn-content">基于自身小红书饰品博主真实场景开发灵析项目；选品 → 内容 → 投放 → GEO全链路理解；平台算法与商家痛点的交叉洞察。</div>
+            <div class="learn-tags"><span>电商AI</span><span>小红书</span><span>实战</span></div>
+          </div>
+          <div class="learning-card">
+            <div class="learn-title">持续学习</div>
+            <div class="learn-content">系统学习LLM/RAG/Agent/Transformer核心原理；跟踪Coze/Dify/Cursor生态前沿；心理学认证支撑用户研究与交互设计。</div>
+            <div class="learn-tags"><span>持续学习</span><span>LLM</span><span>用户研究</span></div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+  <!-- 匹配结果弹窗 -->
+  <div class="modal-overlay" id="matchModal">
+    <div class="modal match-modal">
+      <button class="modal-close" data-modal="matchModal"><i class="fas fa-times"></i></button>
+      <div class="match-modal-header">
+        <h3>综合等级</h3>
+        <span class="match-badge">匹配</span>
+      </div>
+      <div class="match-body">
+        <div class="match-left">
+          <div class="score-circle-wrap">
+            <canvas id="scoreCanvas" width="140" height="140"></canvas>
+            <div class="score-circle-text">
+              <div class="score-circle-label">综合分</div>
+              <div class="score-circle-number" id="scoreNumber">89</div>
+              <div class="score-circle-total">/100</div>
+            </div>
+          </div>
+          <div>
+            <div class="match-matrix-title"><i class="fas fa-chart-bar"></i> 匹配矩阵</div>
+            <div class="match-matrix">
+              <div class="matrix-row">
+                <div class="matrix-name">学历</div>
+                <div class="matrix-bar-wrap"><div class="matrix-bar" id="barEdu" style="width: 0%"></div></div>
+                <div class="matrix-score" id="dimEdu">90</div>
+              </div>
+              <div class="matrix-row">
+                <div class="matrix-name">工作经验</div>
+                <div class="matrix-bar-wrap"><div class="matrix-bar" id="barExp" style="width: 0%"></div></div>
+                <div class="matrix-score" id="dimExp">85</div>
+              </div>
+              <div class="matrix-row">
+                <div class="matrix-name">技能特长</div>
+                <div class="matrix-bar-wrap"><div class="matrix-bar" id="barSkill" style="width: 0%"></div></div>
+                <div class="matrix-score" id="dimSkill">88</div>
+              </div>
+              <div class="matrix-row">
+                <div class="matrix-name">软技能</div>
+                <div class="matrix-bar-wrap"><div class="matrix-bar" id="barSoft" style="width: 0%"></div></div>
+                <div class="matrix-score" id="dimSoft">92</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="match-right">
+          <div class="match-highlight-card">
+            <h4><i class="fas fa-star"></i> 匹配亮点</h4>
+            <div id="matchHighlights">
+              <p><strong>JD：数据敏感，熟练使用SQL、Excel等工具，能独立分析问题并驱动决策</strong></p>
+              <p>候选人具备扎实的数据分析能力与产品策划经验，曾主导数据驱动的产品迭代，展现出扎实的数据敏感度。</p>
+              <p><strong>JD：自驱力强，有目标感和责任心强，为了目标坚持不懈，敢于承担和挑战</strong></p>
+              <p>候选人在实践中从0到1主导产品建设，引入创新方案，体现强烈自驱与责任担当。</p>
+            </div>
+          </div>
+          <div class="match-summary-card">
+            <h4><i class="fas fa-clipboard-list"></i> 总结</h4>
+            <p id="matchConclusion">候选人在专业技能上具备扎实的数据分析能力与产品策划经验，软技能突出表现为自驱力与跨团队推进能力；虽缺乏某些垂直领域直接经验，但其B端复杂系统抽象与用户痛点挖掘能力具有一定可迁移性，整体与岗位匹配度良好。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 项目详情弹窗（瀑布流卡片点击进入） -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal detail-modal">
+      <button class="modal-close" data-modal="detailModal"><i class="fas fa-times"></i></button>
+      <div class="dm-left">
+        <div class="dm-main">
+          <button class="dm-arrow dm-prev" id="dmPrev" aria-label="上一张">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <img id="dmMainImg" src="" alt="项目截图">
+          <button class="dm-arrow dm-next" id="dmNext" aria-label="下一张">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        <div class="dm-thumbs" id="dmThumbs">
+          <!-- 由 JS 渲染 -->
+        </div>
+      </div>
+      <div class="dm-right">
+        <div class="dm-title" id="dmTitle"></div>
+        <div class="dm-meta">
+          <span class="project-tag" id="dmTag"></span>
+          <span class="project-date" id="dmDate"></span>
+        </div>
+        <p class="project-desc-text" id="dmDesc"></p>
+        <div class="project-work">
+          <div class="project-work-title">核心工作</div>
+          <ul class="project-work-list" id="dmWorkList"></ul>
+        </div>
+        <div class="project-result" id="dmResult"></div>
+        <div class="dm-footer">
+          <button class="btn-demo" id="detailDemoBtn"><i class="fas fa-play"></i> 查看Demo</button>
+          <span class="demo-local-hint" id="detailDemoHint" style="display:none;">
+            <i class="fas fa-laptop-code"></i> Demo 本地运行中
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 项目 Demo 弹窗 -->
+  <div class="modal-overlay" id="projectModal">
+    <div class="modal project-modal">
+      <button class="modal-close" data-modal="projectModal"><i class="fas fa-times"></i></button>
+      <div class="modal-title" id="projectModalTitle">项目 Demo</div>
+      <div class="project-demo-wrap" id="projectDemoWrap">
+        <iframe id="projectDemoFrame" class="project-demo-frame" src="" frameborder="0" allowfullscreen></iframe>
+        <div class="project-demo-note" id="projectDemoNote">
+          <i class="fas fa-laptop-code"></i>
+          <span>Demo 本地运行中，可下载项目后通过 <code>npm run dev</code> 启动查看完整效果。</span>
+        </div>
+      </div>
+      <div class="project-modal-content" id="projectModalContent" style="display:none;"></div>
+    </div>
+  </div>
+
+  <script>
+    // 导航切换
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.section');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const target = item.dataset.section;
+        navItems.forEach(n => n.classList.remove('active'));
+        item.classList.add('active');
+        sections.forEach(s => s.classList.remove('active'));
+        document.getElementById('section-' + target).classList.add('active');
+        navMenu.classList.remove('show');
+      });
+    });
+
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('show');
+    });
+
+    // 弹窗控制
+    function openModal(id) {
+      document.getElementById(id).classList.add('show');
+    }
+
+    function closeModal(id) {
+      const overlay = document.getElementById(id);
+      if (!overlay) return;
+      overlay.classList.remove('show');
+      // 项目弹窗：清理 iframe + has-demo 类
+      if (id === 'projectModal') {
+        const frame = document.getElementById('projectDemoFrame');
+        if (frame) frame.src = '';
+        const modal = overlay.querySelector('.modal');
+        if (modal) modal.classList.remove('has-demo');
+      }
+    }
+
+    document.querySelectorAll('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        closeModal(btn.dataset.modal);
+      });
+    });
+
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal(overlay.id);
+      });
+    });
+
+    // 联系我下拉
+    const contactBtn = document.getElementById('contactBtn');
+    const contactDropdown = document.getElementById('contactDropdown');
+    let contactOpen = false;
+
+    contactBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      contactOpen = !contactOpen;
+      contactDropdown.classList.toggle('show', contactOpen);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (contactOpen && !contactDropdown.contains(e.target) && e.target !== contactBtn) {
+        contactOpen = false;
+        contactDropdown.classList.remove('show');
+      }
+    });
+
+    // 下载简历
+    const downloadBtn = document.getElementById('downloadBtn');
+    const downloadBtnOriginal = downloadBtn.innerHTML;
+    downloadBtn.addEventListener('click', async () => {
+      downloadBtn.innerHTML = '<span class="loading-spinner-dark"></span> 下载中...';
+      downloadBtn.disabled = true;
+      try {
+        const res = await fetch('李勰简历.pdf');
+        if (!res.ok) throw new Error('fetch failed');
+        const buffer = await res.arrayBuffer();
+        const blob = new Blob([buffer], { type: 'application/octet-stream' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = '李勰简历.pdf';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 3000);
+      } catch (e) {
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = '李勰简历.pdf';
+        a.download = '李勰简历.pdf';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => document.body.removeChild(a), 100);
+      } finally {
+        setTimeout(() => {
+          downloadBtn.innerHTML = downloadBtnOriginal;
+          downloadBtn.disabled = false;
+        }, 800);
+      }
+    });
+
+    // AI匹配器
+    const matchBtn = document.getElementById('matchBtn');
+    const matchBtnText = document.getElementById('matchBtnText');
+    const matcherInput = document.getElementById('matcherInput');
+
+    // 示例 JD 标签：点击填入输入框
+    document.querySelectorAll('.matcher-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        matcherInput.value = pill.dataset.jd || pill.textContent.trim();
+        matcherInput.focus();
+      });
+    });
+
+    const mockData = {
+      score: 89,
+      edu: 90,
+      exp: 85,
+      skill: 88,
+      soft: 92,
+      highlights: [
+        '<p><strong>JD：数据敏感，熟练使用SQL、Excel等工具，能独立分析问题并驱动决策</strong></p><p>候选人具备扎实的数据分析能力与产品策划经验，曾主导数据驱动的产品迭代，展现出扎实的数据敏感度。</p>',
+        '<p><strong>JD：自驱力强，有目标感和责任心强，为了目标坚持不懈，敢于承担和挑战</strong></p><p>候选人在实践中从0到1主导产品建设，引入创新方案，体现强烈自驱与责任担当。</p>'
+      ],
+      conclusion: '候选人在专业技能上具备扎实的数据分析能力与产品策划经验，软技能突出表现为自驱力与跨团队推进能力；虽缺乏某些垂直领域直接经验，但其B端复杂系统抽象与用户痛点挖掘能力具有一定可迁移性，整体与岗位匹配度良好。'
+    };
+
+    async function analyzeJD(jdText) {
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ jd: jdText })
+      });
+
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        throw new Error(err.error || 'API请求失败: ' + response.status);
+      }
+
+      return await response.json();
+    }
+
+    function drawRing(canvas, percentage, color = '#2563eb', duration = 800) {
+      const ctx = canvas.getContext('2d');
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+
+      // 弹窗过渡动画期间 Canvas 尺寸可能为 0，延迟重试
+      if (!rect.width || !rect.height) {
+        setTimeout(() => drawRing(canvas, percentage, color, duration), 200);
+        return;
+      }
+
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+      const size = rect.width;
+      const center = size / 2;
+      const radius = center - 10;
+      const lineWidth = 10;
+      const startAngle = -Math.PI / 2;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const currentPct = percentage * ease;
+        const endAngle = startAngle + (Math.PI * 2 * currentPct / 100);
+
+        ctx.clearRect(0, 0, size, size);
+
+        ctx.beginPath();
+        ctx.arc(center, center, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = '#f3f4f6';
+        ctx.lineWidth = lineWidth;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(center, center, radius, startAngle, endAngle);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function animateNumber(element, target, duration = 800) {
+      const startTime = performance.now();
+      function frame(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        element.textContent = Math.round(target * ease);
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    async function getJDContent(input) {
+      if (input.startsWith('http://') || input.startsWith('https://')) {
+        try {
+          const response = await fetch('/api/fetch-jd', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url: input })
+          });
+          if (!response.ok) {
+            const err = await response.json().catch(() => ({}));
+            throw new Error(err.error || 'HTTP ' + response.status);
+          }
+          const data = await response.json();
+          return data.text;
+        } catch (e) {
+          alert('无法获取链接内容：' + e.message + '。请手动复制网页中的职位描述并粘贴到输入框中。');
+          return null;
+        }
+      }
+      return input;
+    }
+
+    matchBtn.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+      ripple.classList.add('ripple');
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    });
+
+    matchBtn.addEventListener('click', async () => {
+      const rawInput = matcherInput.value.trim();
+      if (!rawInput) { alert('请粘贴职位 JD 或输入链接'); return; }
+
+      const isUrl = rawInput.startsWith('http://') || rawInput.startsWith('https://');
+      const tooShort = !isUrl && rawInput.length < 10;
+
+      if (tooShort) {
+        const emptyResult = {
+          score: 0,
+          edu: 0,
+          exp: 0,
+          skill: 0,
+          soft: 0,
+          highlights: [],
+          conclusion: '抱歉，您提供的职位描述（JD）内容为空，无法进行匹配度分析。请提供完整的职位描述。'
+        };
+
+        document.getElementById('matchHighlights').innerHTML = '';
+        document.getElementById('matchConclusion').textContent = emptyResult.conclusion;
+
+        openModal('matchModal');
+
+        animateNumber(document.getElementById('scoreNumber'), emptyResult.score);
+        animateNumber(document.getElementById('dimEdu'), emptyResult.edu);
+        animateNumber(document.getElementById('dimExp'), emptyResult.exp);
+        animateNumber(document.getElementById('dimSkill'), emptyResult.skill);
+        animateNumber(document.getElementById('dimSoft'), emptyResult.soft);
+
+        setTimeout(() => {
+          document.getElementById('barEdu').style.width = emptyResult.edu + '%';
+          document.getElementById('barExp').style.width = emptyResult.exp + '%';
+          document.getElementById('barSkill').style.width = emptyResult.skill + '%';
+          document.getElementById('barSoft').style.width = emptyResult.soft + '%';
+        }, 100);
+
+        setTimeout(() => {
+          const canvas = document.getElementById('scoreCanvas');
+          drawRing(canvas, emptyResult.score);
+        }, 350);
+        return;
+      }
+
+      const jdText = await getJDContent(rawInput);
+      if (!jdText) return;
+
+      matchBtn.classList.add('loading');
+      matchBtnText.innerHTML = '<span class="loading-spinner"></span>';
+      matchBtn.disabled = true;
+
+      try {
+        const result = await analyzeJD(jdText);
+
+        matchBtn.classList.remove('loading');
+        matchBtn.classList.add('success');
+        matchBtnText.innerHTML = '<i class="fas fa-check"></i> 匹配成功';
+        matchBtn.disabled = false;
+        setTimeout(() => {
+          matchBtn.classList.remove('success');
+          matchBtnText.innerHTML = '开始匹配 <i class="fas fa-arrow-right"></i>';
+        }, 1500);
+
+        document.getElementById('matchHighlights').innerHTML = result.highlights.join('');
+        document.getElementById('matchConclusion').textContent = result.conclusion;
+
+        openModal('matchModal');
+
+        animateNumber(document.getElementById('scoreNumber'), result.score);
+        animateNumber(document.getElementById('dimEdu'), result.edu);
+        animateNumber(document.getElementById('dimExp'), result.exp);
+        animateNumber(document.getElementById('dimSkill'), result.skill);
+        animateNumber(document.getElementById('dimSoft'), result.soft);
+
+        setTimeout(() => {
+          document.getElementById('barEdu').style.width = result.edu + '%';
+          document.getElementById('barExp').style.width = result.exp + '%';
+          document.getElementById('barSkill').style.width = result.skill + '%';
+          document.getElementById('barSoft').style.width = result.soft + '%';
+        }, 100);
+
+        setTimeout(() => {
+          const canvas = document.getElementById('scoreCanvas');
+          drawRing(canvas, result.score);
+        }, 350);
+      } catch (error) {
+        matchBtn.classList.remove('loading');
+        matchBtnText.innerHTML = '开始匹配 <i class="fas fa-arrow-right"></i>';
+        matchBtn.disabled = false;
+        console.warn('DeepSeek API 调用失败，已降级为演示数据：', error.message);
+        alert('API 调用失败（' + error.message + '），已使用演示数据展示页面效果。');
+
+        const result = mockData;
+        document.getElementById('matchHighlights').innerHTML = result.highlights.join('');
+        document.getElementById('matchConclusion').textContent = result.conclusion;
+
+        openModal('matchModal');
+
+        animateNumber(document.getElementById('scoreNumber'), result.score);
+        animateNumber(document.getElementById('dimEdu'), result.edu);
+        animateNumber(document.getElementById('dimExp'), result.exp);
+        animateNumber(document.getElementById('dimSkill'), result.skill);
+        animateNumber(document.getElementById('dimSoft'), result.soft);
+
+        setTimeout(() => {
+          document.getElementById('barEdu').style.width = result.edu + '%';
+          document.getElementById('barExp').style.width = result.exp + '%';
+          document.getElementById('barSkill').style.width = result.skill + '%';
+          document.getElementById('barSoft').style.width = result.soft + '%';
+        }, 100);
+
+        setTimeout(() => {
+          const canvas = document.getElementById('scoreCanvas');
+          drawRing(canvas, result.score);
+        }, 50);
+      }
+    });
+
+    // ===== 项目作品（两栏交替布局） =====
+    const projects = [
+      {
+        id: 'contracthub',
+        icon: 'fa-file-contract',
+        title: 'ContractHub · AI合同审查平台',
+        tag: '产品+AI融合',
+        date: '2026.06',
+        color: '#2563eb',
+        tags: ['SaaS', 'AI', '平台化'],
+        tech: 'Next.js · TypeScript · TailwindCSS',
+        description: '面向法律、金融、HR多行业的合同审查SaaS平台，设计"通用引擎+可插拔行业包"架构，一套系统覆盖多场景。独立完成从产品定义、交互设计到前端开发的全链路交付，支持从0生成合同、上传审查、AI对话式修改到复审的完整闭环，VibeCoding模式1周交付6页面可交互Demo。',
+        workItems: [
+          '<strong>平台架构规划：</strong>将合同生成、解析、风险扫描、报告输出抽象为通用底层逻辑，以行业包注入差异化业务规则，实现审查逻辑与行业知识解耦。',
+          '<strong>四维风险扫描 + AI 业务闭环：</strong>设计主体资质/价款条款/违约责任/争议解决四维评估体系，覆盖 15 类风险条款，支持多方立场切换。'
+        ],
+        result: '基于 <strong>VibeCoding 模式，1 周完成包含 6 个页面的可交互 Demo</strong>；验证了单套引擎支撑多行业业务的平台扩展能力。',
+        images: [
+          'images/hetong1.png', 'images/hetong2.png', 'images/hetong3.png',
+          'images/hetong4.png', 'images/hetong5.png', 'images/hetong6.png',
+          'images/hetong7.png', 'images/hetong8.png', 'images/hetong9.png',
+          'images/hetong10.png'
+        ],
+        demoUrl: ''
+      },
+      {
+        id: 'valuation',
+        icon: 'fa-house-chimney',
+        title: '二手房智能估价平台',
+        tag: '产品+AI融合',
+        date: '2024-2026',
+        color: '#22c55e',
+        tags: ['多模态AI', '估价', 'Agent'],
+        tech: 'Python · React · LLM',
+        description: '面向业主与经纪人的多模态AI估价系统，融合LLM语义理解+计算机视觉+市场数据，解决传统估价依赖人工经验、效率低、结果不可解释的行业痛点。覆盖新房/二手房/商铺等多业态，核心场景误差率较人工估价下降5.2%，支撑1000+业务场景、数万次在线调用。',
+        workItems: [
+          '<strong>多 Agent 架构 + 全链路体验设计：</strong>统筹图像识别、房源匹配、估价推理的协作流转逻辑。',
+          '<strong>可解释性报告设计：</strong>设计可视化估价报告，将学区、楼层、装修等影响因子透明化输出。',
+          '<strong>模型迭代机制建立：</strong>独立搭建模型评测体系与数据回流链路，完成 2000+ 条业务数据清洗标准化。'
+        ],
+        result: '<strong>覆盖北京 1000+ 小区，误差率下降 5.2%</strong>；经纪人端委托转化率达 67%。',
+        images: [
+          'images/gujia.png', 'images/gujia1.png', 'images/gujia2.png', 'images/gujia3.png'
+        ],
+        demoUrl: ''
+      },
+      {
+        id: 'lingxi',
+        icon: 'fa-chart-line',
+        title: '灵析 · AI 电商营销 SaaS 平台',
+        tag: '独立产品/开发者',
+        date: '2026.09',
+        color: '#14b8a6',
+        tags: ['电商AI', '营销', 'SaaS'],
+        tech: 'Next.js · TypeScript · TailwindCSS',
+        description: '面向中小电商商家的全链路AI营销平台，覆盖选品分析、爆款内容生成、投放优化到GEO搜索占位的完整营销链路。首发支持小红书电商场景，融合AIGC能力实现从数据洞察到内容生产的自动化闭环，VibeCoding模式独立完成V1+V2全量功能Demo开发。',
+        workItems: [
+          '<strong>全链路产品体系规划：</strong>规划五大模块，设计双路径用户体系，覆盖商家全周期。',
+          '<strong>AI 能力矩阵搭建：</strong>选品推荐引擎 + AIGC 内容生成引擎（LLM API + RAG）+ GEO 优化模块，实现完整业务闭环。',
+          '<strong>PRD 输出与 VibeCoding 开发：</strong>完成 PRD + 视觉设计规范，VibeCoding 模式完成可交互 Demo。'
+        ],
+        result: '<strong>覆盖 8 大功能模块，减少 60% 开发资源投入</strong>。',
+        images: [
+          'images/lingxi1.png', 'images/lingxi2.png', 'images/lingxi3.png',
+          'images/lingxi4.png', 'images/lingxi5.png', 'images/lingxi6.png',
+          'images/lingxi7.png', 'images/lingxi8.png', 'images/lingxi9.png'
+        ],
+        demoUrl: ''
+      },
+      {
+        id: 'zhike',
+        icon: 'fa-graduation-cap',
+        title: '智课 · AI 智能备课助手',
+        tag: '独立产品/开发者',
+        date: '2026.06',
+        color: '#f59e0b',
+        tags: ['AIGC', '教育', 'SaaS'],
+        tech: 'React · TypeScript · TailwindCSS',
+        description: '针对K12教师群体打造的AIGC SaaS产品，核心能力为学情追问引擎+个性化教案智能生成，通过多轮对话精准捕捉教学需求，自动输出符合课标要求的教案、课件与练习方案。全流程基于VibeCoding完成从0到1开发，3周交付7页面可交互Demo。',
+        workItems: [
+          '<strong>学情追问引擎设计：</strong>采集班级学情、学生易错点、特殊教学诉求，输出附带学情标签的可编辑教案框架。',
+          '<strong>五维质量评估体系搭建：</strong>围绕教学目标、学情分析、活动设计、时间分配、评价设计实现 AI 自动打分。',
+          '<strong>全链路产品落地：</strong>独立完成 PRD 到 Demo 全链路工作。'
+        ],
+        result: '<strong>覆盖 5 大功能模块</strong>，借助 VibeCoding 模式大幅减少开发资源投入。',
+        images: [
+          'images/zhike1.png', 'images/zhike2.png', 'images/zhike3.png',
+          'images/zhike4.png', 'images/zhike5.png', 'images/zhike6.png',
+          'images/zhike7.png', 'images/zhike8.png', 'images/zhike9.png',
+          'images/zhike10.png', 'images/zhike11.png'
+        ],
+        demoUrl: ''
+      },
+      {
+        id: 'travelmap',
+        icon: 'fa-map-location-dot',
+        title: 'AI 旅行助手 Agent 应用',
+        tag: '独立产品/开发者',
+        date: '2026.05',
+        color: '#a855f7',
+        tags: ['Agent', 'C端', '旅行'],
+        tech: 'React Native · Agent · Map',
+        description: '基于Agent编排能力打造的C端AI旅行应用，集成地图足迹打卡、心愿清单管理、AI攻略生成、智能路书规划四大核心功能，全程对话式交互。支持多轮推理与任务分发，用户可通过自然语言完成行程规划、景点筛选、路线优化等复杂旅行决策。',
+        workItems: [
+          '<strong>产品方案 + AI 行程引擎：</strong>对接大模型 API 搭建行程规划引擎，设计标准化 Prompt 模板。',
+          '<strong>方法论沉淀：</strong>总结需求拆解、Prompt 编写、AI 输出验证的实操经验。'
+        ],
+        result: '<strong>1 周完成从概念到可演示 Demo，开发效率提升 60%</strong>。',
+        images: [
+          'images/store-tag-14.png', 'images/store-tag-15.png', 'images/store-tag-16.png'
+        ],
+        demoUrl: ''
+      }
+    ];
+
+    // 当前详情模态框状态
+    let modalProjectIndex = 0;
+    let modalImageIndex = 0;
+
+    // 渲染项目作品行（两栏交替）
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      if (!container) return;
+      container.innerHTML = projects.map((p, i) => `
+        <div class="project-row${i % 2 === 1 ? ' reverse' : ''}" data-index="${i}">
+          <div class="project-screenshot">
+            <img src="${p.images[0]}" alt="${p.title}">
+          </div>
+          <div class="project-info">
+            <div class="project-color-bar" style="background:${p.color}"></div>
+            <h3 class="project-name">${p.title}</h3>
+            <div class="project-tags">
+              ${(p.tags || [p.tag]).map(t => `<span class="tag">${t}</span>`).join('')}
+            </div>
+            <p class="project-desc">${p.description}</p>
+            <div class="project-meta">
+              <span class="project-tech">${p.tech || ''}</span>
+              <span class="project-date">${p.date}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('.project-row').forEach(row => {
+        row.addEventListener('click', () => {
+          openDetailModal(parseInt(row.dataset.index));
+        });
+      });
+    }
+
+    // 打开详情模态框
+    function openDetailModal(index) {
+      modalProjectIndex = index;
+      modalImageIndex = 0;
+      renderDetailModal();
+      openModal('detailModal');
+    }
+
+    // 渲染详情模态框内容
+    function renderDetailModal() {
+      const p = projects[modalProjectIndex];
+      if (!p) return;
+
+      document.getElementById('dmTitle').textContent = p.title;
+      document.getElementById('dmTag').textContent = p.tag;
+      document.getElementById('dmDate').textContent = p.date;
+      document.getElementById('dmDesc').textContent = p.description;
+      document.getElementById('dmWorkList').innerHTML = p.workItems.map(it => `<li>${it}</li>`).join('');
+      document.getElementById('dmResult').innerHTML = p.result;
+
+      // Demo 按钮 / 本地提示
+      const demoBtn = document.getElementById('detailDemoBtn');
+      const localHint = document.getElementById('detailDemoHint');
+      if (p.demoUrl) {
+        demoBtn.style.display = '';
+        localHint.style.display = 'none';
+      } else {
+        demoBtn.style.display = 'none';
+        localHint.style.display = '';
+      }
+
+      // 缩略图行
+      const thumbs = document.getElementById('dmThumbs');
+      thumbs.innerHTML = p.images.map((src, i) => `
+        <img src="${src}" alt="缩略图${i + 1}" class="${i === modalImageIndex ? 'active' : ''}" data-index="${i}">
+      `).join('');
+      thumbs.querySelectorAll('img').forEach(img => {
+        img.addEventListener('click', () => dmSwitchImage(parseInt(img.dataset.index)));
+      });
+
+      dmUpdateMainImage();
+
+      // 右栏整体淡入
+      const right = document.querySelector('#detailModal .dm-right');
+      if (right) {
+        right.classList.remove('fade-swap');
+        void right.offsetWidth;
+        right.classList.add('fade-swap');
+      }
+    }
+
+    function dmSwitchImage(index) {
+      modalImageIndex = index;
+      dmUpdateMainImage();
+      document.querySelectorAll('#dmThumbs img').forEach((img, i) => {
+        img.classList.toggle('active', i === index);
+      });
+    }
+
+    function dmUpdateMainImage() {
+      const mainImg = document.getElementById('dmMainImg');
+      const imgs = projects[modalProjectIndex].images || [];
+      if (!mainImg || !imgs.length) return;
+      const src = imgs[modalImageIndex] || imgs[0];
+      mainImg.style.opacity = '0';
+      setTimeout(() => {
+        mainImg.src = src;
+        mainImg.onload = () => { mainImg.style.opacity = '1'; };
+        if (mainImg.complete) mainImg.style.opacity = '1';
+      }, 150);
+    }
+
+    function dmNavigate(delta) {
+      const imgs = projects[modalProjectIndex].images || [];
+      if (!imgs.length) return;
+      const next = (modalImageIndex + delta + imgs.length) % imgs.length;
+      dmSwitchImage(next);
+    }
+
+    function openProjectDemo(index) {
+      const p = projects[typeof index === 'number' ? index : modalProjectIndex];
+      if (!p) return;
+      const modal = document.querySelector('#projectModal .modal');
+      const title = document.getElementById('projectModalTitle');
+      const wrap = document.getElementById('projectDemoWrap');
+      const frame = document.getElementById('projectDemoFrame');
+      const note = document.getElementById('projectDemoNote');
+      if (modal) modal.classList.add('has-demo');
+      if (title) title.textContent = p.title;
+      if (p.demoUrl && wrap && frame) {
+        frame.src = p.demoUrl;
+        frame.style.display = '';
+        if (note) note.style.display = 'none';
+      } else {
+        if (frame) frame.style.display = 'none';
+        if (note) note.style.display = '';
+      }
+      setTimeout(() => openModal('projectModal'), 100);
+    }
+
+    // 初始化
+    renderProjects();
+
+    // 详情模态框箭头按钮
+    document.getElementById('dmPrev').addEventListener('click', () => dmNavigate(-1));
+    document.getElementById('dmNext').addEventListener('click', () => dmNavigate(1));
+
+    // 详情模态框 Demo 按钮
+    document.getElementById('detailDemoBtn').addEventListener('click', (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      createExplosion(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      openProjectDemo(modalProjectIndex);
+    });
+
+    // 键盘左右键：详情模态框打开时切换截图
+    document.addEventListener('keydown', (e) => {
+      const dm = document.getElementById('detailModal');
+      if (!dm || !dm.classList.contains('show')) return;
+      if (e.key === 'ArrowLeft') dmNavigate(-1);
+      else if (e.key === 'ArrowRight') dmNavigate(1);
+    });
+
+    // 工作经历「关联项目」卡片：切换到项目作品页并打开对应项目详情
+    document.querySelectorAll('.rel-card[data-project]').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = projects.findIndex(p => p.id === card.dataset.project);
+        if (idx < 0) return;
+        const navBtn = document.querySelector('.nav-item[data-section="projects"]');
+        if (navBtn) navBtn.click();
+        openDetailModal(idx);
+      });
+    });
+
+    // 兼容旧 openProjectModal 调用（来自其他区域）
+    function openProjectModal(key, data, withDemo) {
+      const idx = projects.findIndex(p => p.id === key);
+      if (idx >= 0) openDetailModal(idx);
+      if (withDemo) openProjectDemo(idx >= 0 ? idx : undefined);
+    }
+
+    // 粒子爆炸特效
+    function createExplosion(x, y) {
+      const particleCount = 24;
+      const container = document.createElement('div');
+      container.style.cssText = `position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9999;overflow:hidden;`;
+      document.body.appendChild(container);
+
+      for (let i = 0; i < particleCount; i++) {
+        const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.5;
+        const speed = 80 + Math.random() * 120;
+        const size = 3 + Math.random() * 5;
+        const tx = Math.cos(angle) * speed;
+        const ty = Math.sin(angle) * speed;
+
+        // 外层光晕
+        const glow = document.createElement('div');
+        glow.style.cssText = `
+          position: absolute;
+          left: ${x}px;
+          top: ${y}px;
+          width: ${size * 3}px;
+          height: ${size * 3}px;
+          background: radial-gradient(circle, rgba(59,130,246,0.5) 0%, rgba(37,99,235,0) 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+        `;
+        container.appendChild(glow);
+
+        // 内层核心
+        const core = document.createElement('div');
+        core.style.cssText = `
+          position: absolute;
+          left: ${x}px;
+          top: ${y}px;
+          width: ${size}px;
+          height: ${size}px;
+          background: radial-gradient(circle at 35% 35%, #ffffff 0%, #93c5fd 40%, #2563eb 100%);
+          border-radius: 50%;
+          pointer-events: none;
+          box-shadow: 0 0 ${size * 2}px rgba(59,130,246,0.6), 0 0 ${size * 4}px rgba(37,99,235,0.2);
+        `;
+        container.appendChild(core);
+
+        const duration = 400 + Math.random() * 300;
+        const keyframes = [
+          { transform: 'translate(0,0) scale(1)', opacity: 1 },
+          { transform: `translate(${tx}px, ${ty}px) scale(0)`, opacity: 0 }
+        ];
+        glow.animate(keyframes, { duration, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', fill: 'forwards' });
+        core.animate(keyframes, { duration, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)', fill: 'forwards' });
+      }
+
+      // 中心闪光
+      const flash = document.createElement('div');
+      flash.style.cssText = `
+        position: absolute;
+        left: ${x}px;
+        top: ${y}px;
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(circle, #ffffff 0%, #93c5fd 100%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 30px 10px rgba(37, 99, 235, 0.6);
+      `;
+      container.appendChild(flash);
+      flash.animate([
+        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+        { transform: 'translate(-50%, -50%) scale(4)', opacity: 0 }
+      ], {
+        duration: 300,
+        easing: 'ease-out',
+        fill: 'forwards'
+      });
+
+      setTimeout(() => container.remove(), 800);
+    }
+
+    // ===== 雷达图 =====
+    const radarCanvas = document.getElementById('radarCanvas');
+    const radarCtx = radarCanvas.getContext('2d');
+    const radarData = [
+      { label: 'AI产品', score: 0.95, full: 'AI产品能力' },
+      { label: '全链路交付', score: 0.92, full: '全链路交付能力' },
+      { label: '前端开发', score: 0.90, full: '前端开发能力' },
+      { label: '架构设计', score: 0.88, full: '架构设计能力' },
+      { label: '数据分析', score: 0.85, full: '数据分析能力' },
+      { label: '项目管理', score: 0.82, full: '项目管理能力' }
+    ];
+    // 优势卡片 → 雷达维度索引映射
+    // 复合型AI产品专家 → AI产品[0]；架构设计与平台化 → 架构设计[3]；数据分析与驱动 → 数据分析[4]
+    // 技术栈与高效交付 → 全链路交付[1]；专业认证 → 项目管理[5]
+    const advCardToRadar = [0, 3, 4, 1, 5];
+    const radarColors = {
+      grid: 'rgba(37, 99, 235, 0.08)',
+      axis: 'rgba(37, 99, 235, 0.15)',
+      fill: 'rgba(37, 99, 235, 0.15)',
+      stroke: 'rgba(37, 99, 235, 0.6)',
+      point: '#2563eb',
+      text: '#6b7280',
+      active: '#2563eb'
+    };
+
+    // 粒子系统
+    let particles = [];
+    let isParticleAnimating = false;
+
+    function createParticles() {
+      particles = [];
+      const cx = radarCanvas.width / 2;
+      const cy = radarCanvas.height / 2;
+      const radius = Math.min(radarCanvas.width, radarCanvas.height) * 0.32;
+      const count = radarData.length;
+      const angleStep = (Math.PI * 2) / count;
+
+      for (let i = 0; i < count; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        const targetR = radius * radarData[i].score;
+        const tx = cx + Math.cos(angle) * targetR;
+        const ty = cy + Math.sin(angle) * targetR;
+
+        // 每个数据点生成20个粒子
+        for (let j = 0; j < 20; j++) {
+          const startAngle = Math.random() * Math.PI * 2;
+          const startDist = 30 + Math.random() * 120;
+          particles.push({
+            x: cx + Math.cos(startAngle) * startDist,
+            y: cy + Math.sin(startAngle) * startDist,
+            tx: tx,
+            ty: ty,
+            vx: 0,
+            vy: 0,
+            size: 1.5 + Math.random() * 2.5,
+            alpha: 0.6 + Math.random() * 0.4,
+            delay: Math.random() * 20,
+            speed: 0.03 + Math.random() * 0.04,
+            color: `rgba(37, 99, 235, ${0.4 + Math.random() * 0.4})`,
+            arrived: false
+          });
+        }
+      }
+    }
+
+    function updateParticles() {
+      let allArrived = true;
+      particles.forEach(p => {
+        if (p.delay > 0) {
+          p.delay--;
+          allArrived = false;
+          return;
+        }
+        if (p.arrived) return;
+
+        const dx = p.tx - p.x;
+        const dy = p.ty - p.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 3) {
+          p.arrived = true;
+          p.x = p.tx;
+          p.y = p.ty;
+          return;
+        }
+
+        allArrived = false;
+        p.vx += dx * p.speed;
+        p.vy += dy * p.speed;
+        p.vx *= 0.85;
+        p.vy *= 0.85;
+        p.x += p.vx;
+        p.y += p.vy;
+      });
+      return allArrived;
+    }
+
+    function drawParticles() {
+      particles.forEach(p => {
+        if (p.delay > 0) return;
+        radarCtx.beginPath();
+        radarCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        radarCtx.fillStyle = p.color;
+        radarCtx.fill();
+
+        // 拖尾效果
+        if (!p.arrived) {
+          radarCtx.beginPath();
+          radarCtx.moveTo(p.x, p.y);
+          radarCtx.lineTo(p.x - p.vx * 3, p.y - p.vy * 3);
+          radarCtx.strokeStyle = p.color.replace(/[\d.]+\)$/, '0.15)');
+          radarCtx.lineWidth = p.size * 0.5;
+          radarCtx.stroke();
+        }
+      });
+    }
+
+    function drawRadar(progress = 1, hoverIndex = -1, showParticles = false) {
+      const w = radarCanvas.width;
+      const h = radarCanvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      const radius = Math.min(w, h) * 0.32;
+      const levels = 5;
+      const count = radarData.length;
+      const angleStep = (Math.PI * 2) / count;
+
+      radarCtx.clearRect(0, 0, w, h);
+
+      // 网格
+      for (let i = 1; i <= levels; i++) {
+        const r = (radius / levels) * i;
+        radarCtx.beginPath();
+        for (let j = 0; j <= count; j++) {
+          const angle = j * angleStep - Math.PI / 2;
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
+          if (j === 0) radarCtx.moveTo(x, y);
+          else radarCtx.lineTo(x, y);
+        }
+        radarCtx.strokeStyle = radarColors.grid;
+        radarCtx.lineWidth = 1;
+        radarCtx.stroke();
+      }
+
+      // 轴线
+      for (let i = 0; i < count; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        radarCtx.beginPath();
+        radarCtx.moveTo(cx, cy);
+        radarCtx.lineTo(cx + Math.cos(angle) * radius, cy + Math.sin(angle) * radius);
+        radarCtx.strokeStyle = radarColors.axis;
+        radarCtx.lineWidth = 1;
+        radarCtx.stroke();
+      }
+
+      // 粒子层
+      if (showParticles) {
+        drawParticles();
+      }
+
+      // 数据区域
+      radarCtx.beginPath();
+      for (let i = 0; i <= count; i++) {
+        const idx = i % count;
+        const angle = idx * angleStep - Math.PI / 2;
+        const r = radius * radarData[idx].score * progress;
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+        if (i === 0) radarCtx.moveTo(x, y);
+        else radarCtx.lineTo(x, y);
+      }
+      radarCtx.closePath();
+      radarCtx.fillStyle = radarColors.fill;
+      radarCtx.fill();
+      radarCtx.strokeStyle = radarColors.stroke;
+      radarCtx.lineWidth = 2;
+      radarCtx.stroke();
+
+      // 数据点发光效果
+      for (let i = 0; i < count; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        const r = radius * radarData[i].score * progress;
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r;
+
+        // 外发光
+        if (progress >= 1) {
+          radarCtx.beginPath();
+          radarCtx.arc(x, y, i === hoverIndex ? 14 : 10, 0, Math.PI * 2);
+          radarCtx.fillStyle = `rgba(37, 99, 235, ${i === hoverIndex ? 0.15 : 0.08})`;
+          radarCtx.fill();
+        }
+
+        radarCtx.beginPath();
+        radarCtx.arc(x, y, i === hoverIndex ? 6 : 4, 0, Math.PI * 2);
+        radarCtx.fillStyle = i === hoverIndex ? radarColors.active : radarColors.point;
+        radarCtx.fill();
+        if (i === hoverIndex) {
+          radarCtx.strokeStyle = 'white';
+          radarCtx.lineWidth = 2;
+          radarCtx.stroke();
+        }
+      }
+
+      // 标签 + 分数
+      if (progress >= 0.5) {
+        radarCtx.textAlign = 'center';
+        radarCtx.textBaseline = 'middle';
+        for (let i = 0; i < count; i++) {
+          const angle = i * angleStep - Math.PI / 2;
+          const labelR = radius + 30;
+          const x = cx + Math.cos(angle) * labelR;
+          const y = cy + Math.sin(angle) * labelR;
+          const isHover = i === hoverIndex;
+          radarCtx.fillStyle = isHover ? radarColors.active : radarColors.text;
+          radarCtx.font = isHover ? 'bold 13px -apple-system, BlinkMacSystemFont, sans-serif' : '12px -apple-system, BlinkMacSystemFont, sans-serif';
+          radarCtx.fillText(radarData[i].label, x, y - 7);
+          radarCtx.fillStyle = isHover ? radarColors.active : radarColors.point;
+          radarCtx.font = 'bold 11px -apple-system, BlinkMacSystemFont, sans-serif';
+          radarCtx.fillText(Math.round(radarData[i].score * 100), x, y + 7);
+        }
+      }
+    }
+
+    // 粒子消散入场动画
+    let radarProgress = 0;
+    let particlePhase = 0; // 0: 未开始, 1: 粒子汇聚中, 2: 雷达展开
+
+    function animateRadarWithParticles() {
+      if (particlePhase === 1) {
+        const allArrived = updateParticles();
+        drawRadar(0, -1, true);
+        if (!allArrived) {
+          requestAnimationFrame(animateRadarWithParticles);
+        } else {
+          particlePhase = 2;
+          radarProgress = 0;
+          requestAnimationFrame(animateRadarWithParticles);
+        }
+      } else if (particlePhase === 2) {
+        radarProgress += 0.025;
+        if (radarProgress > 1) radarProgress = 1;
+        drawRadar(radarProgress);
+        if (radarProgress < 1) {
+          requestAnimationFrame(animateRadarWithParticles);
+        } else {
+          particlePhase = 0;
+          isParticleAnimating = false;
+        }
+      }
+    }
+
+    function startRadarAnimation() {
+      if (isParticleAnimating) return;
+      isParticleAnimating = true;
+      particlePhase = 1;
+      createParticles();
+      animateRadarWithParticles();
+    }
+
+    // 雷达图交互
+    let radarHoverIndex = -1;
+    radarCanvas.addEventListener('mousemove', (e) => {
+      if (isParticleAnimating) return;
+      const rect = radarCanvas.getBoundingClientRect();
+      const mx = e.clientX - rect.left;
+      const my = e.clientY - rect.top;
+      const cx = radarCanvas.width / 2;
+      const cy = radarCanvas.height / 2;
+      const radius = Math.min(radarCanvas.width, radarCanvas.height) * 0.32;
+      const count = radarData.length;
+      const angleStep = (Math.PI * 2) / count;
+
+      let minDist = Infinity;
+      let closest = -1;
+      for (let i = 0; i < count; i++) {
+        const angle = i * angleStep - Math.PI / 2;
+        const r = radius * radarData[i].score;
+        const px = cx + Math.cos(angle) * r;
+        const py = cy + Math.sin(angle) * r;
+        const dist = Math.hypot(mx - px, my - py);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      }
+
+      const newHover = minDist < 30 ? closest : -1;
+      if (newHover !== radarHoverIndex) {
+        radarHoverIndex = newHover;
+        drawRadar(1, radarHoverIndex);
+        // 雷达维度 → 卡片：仅映射维度有对应卡片时才高亮
+        const cardIdx = advCardToRadar.indexOf(radarHoverIndex);
+        document.querySelectorAll('.advantage-card').forEach((card, i) => {
+          card.classList.toggle('active', i === cardIdx && cardIdx >= 0);
+        });
+      }
+    });
+
+    radarCanvas.addEventListener('mouseleave', () => {
+      if (isParticleAnimating) return;
+      radarHoverIndex = -1;
+      drawRadar(1, -1);
+      document.querySelectorAll('.advantage-card').forEach(card => card.classList.remove('active'));
+    });
+
+    // 卡片hover同步高亮雷达图
+    document.querySelectorAll('.advantage-card').forEach((card, i) => {
+      card.addEventListener('mouseenter', () => {
+        if (isParticleAnimating) return;
+        const radarIdx = advCardToRadar[i] !== undefined ? advCardToRadar[i] : -1;
+        radarHoverIndex = radarIdx;
+        drawRadar(1, radarIdx);
+        document.querySelectorAll('.advantage-card').forEach((c, j) => c.classList.toggle('active', j === i));
+      });
+      card.addEventListener('mouseleave', () => {
+        if (isParticleAnimating) return;
+        radarHoverIndex = -1;
+        drawRadar(1, -1);
+        document.querySelectorAll('.advantage-card').forEach(c => c.classList.remove('active'));
+      });
+    });
+
+    // 进度条动画
+    function animateScoreBars() {
+      document.querySelectorAll('.adv-score-fill').forEach(bar => {
+        const target = bar.dataset.target;
+        if (target) bar.style.width = target + '%';
+      });
+    }
+
+    // 当切换到个人优势页面时触发动画
+    const advantagesSection = document.getElementById('section-advantages');
+    const radarObserver = new MutationObserver(() => {
+      if (advantagesSection.classList.contains('active')) {
+        startRadarAnimation();
+        setTimeout(animateScoreBars, 1200);
+      }
+    });
+    radarObserver.observe(advantagesSection, { attributes: true, attributeFilter: ['class'] });
+
+    // 初始化
+    drawRadar(0);
+  </script>
+</body>
+</html>
